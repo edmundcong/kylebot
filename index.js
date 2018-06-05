@@ -52,7 +52,7 @@ client.on("message", async msg => {
     }
     timer = await client.setInterval(() => {
       msg.channel.send(randomMusing(concatMusings));
-    }, Math.floor(Math.random() * testingInterval));
+    }, Math.floor(Math.random() * prodInterval));
   }
 });
 
