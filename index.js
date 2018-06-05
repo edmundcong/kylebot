@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const config = require("./config");
 const musings = require("./musings");
 
 const prodInterval = 1000 * 60 * 60;
