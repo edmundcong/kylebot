@@ -18,21 +18,29 @@ const { generalMusings } = musings;
 const concatMusings = [...stopMusings, ...generalMusings];
 let started = false;
 let timer;
+let errorLogs = "";
 client.on("message", async msg => {
+  if (msg.content === "errorLogs") {
+    msg.reply(errorLogs);
+  }
   if (msg.content === "stop" && started) {
     started = false;
     msg.reply(randomMusing(stopMusings));
     timer = null;
     try {
       client.clearInterval(timer);
-    } catch (e) {}
+    } catch (e) {
+      errorLogs += " -- " + e;
+    }
   } else if (msg.content !== "kyle" && msg.content !== "stop" && msg.author.username !== "kylebot") {
     msg.reply(randomMusing(concatMusings));
   } else if (msg.content === "kyle" && !started) {
     started = true;
     try {
       client.clearInterval(timer);
-    } catch (e) {}
+    } catch (e) {
+      errorLogs += " -- " + e;
+    }
     timer = await client.setInterval(() => {
       msg.channel.send(randomMusing(concatMusings));
     }, Math.floor(Math.random() * prodInterval));
