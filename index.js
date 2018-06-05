@@ -29,7 +29,6 @@ client.on("message", msg => {
   } else if (msg.author.username !== "kylebot") {
     msg.reply(randomMusing(concatMusings));
   }
-  console.log(msg.author.username);
   if (msg.content === "kyle" && !started) {
     started = true;
     timer = client.setInterval(() => {
