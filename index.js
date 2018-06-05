@@ -52,6 +52,7 @@ client.on("message", async msg => {
       msg.reply("contact Ed I broke (err: 2)");
       errorLogs += " -- " + e;
     }
+    msg.reply("i am online.");
     timer = await client.setInterval(() => {
       msg.channel.send(randomMusing(concatMusings));
     }, Math.floor(Math.random() * prodInterval));
