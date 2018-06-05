@@ -35,6 +35,7 @@ client.on("message", async msg => {
     try {
       client.clearInterval(timer);
     } catch (e) {
+      msg.reply("contact edmund i broke (err: 1)");
       errorLogs += " -- " + e;
     }
   } else if (msg.content !== "kyle" && msg.content !== "stop" && msg.author.username !== "kylebot") {
@@ -46,6 +47,7 @@ client.on("message", async msg => {
     try {
       client.clearInterval(timer);
     } catch (e) {
+      msg.reply("contact edmund i broke (err: 2)");
       errorLogs += " -- " + e;
     }
     timer = await client.setInterval(() => {
