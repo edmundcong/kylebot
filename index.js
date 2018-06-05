@@ -19,16 +19,11 @@ const concatMusings = [...stopMusings, ...generalMusings];
 let started = false;
 let timer;
 let errorLogs = "";
-let commandTranscript = "";
 client.on("message", async msg => {
   if (msg.content === "errorLogs") {
     msg.reply(errorLogs);
   }
-  if (msg.content === "commandTranscript") {
-    msg.reply(commandTranscript);
-  }
   if (msg.content === "stop" && started) {
-    commandTranscript += "{message: " + msg.content + ", id: 1}, ";
     started = false;
     msg.reply(randomMusing(stopMusings));
     timer = null;
@@ -39,10 +34,8 @@ client.on("message", async msg => {
       errorLogs += " -- " + e;
     }
   } else if (msg.content === "say something, kyle") {
-    commandTranscript += "{message: '" + msg.content + "', id: 2}, ";
     msg.reply(randomMusing(concatMusings));
   } else if (msg.content === "kyle" && !started) {
-    commandTranscript += "{message: '" + msg.content + "', id: 3}, ";
     started = true;
     try {
       client.clearInterval(timer);
@@ -55,7 +48,6 @@ client.on("message", async msg => {
       msg.channel.send(randomMusing(concatMusings));
     }, Math.floor(Math.random() * prodInterval));
   } else if (msg.content === "goodnight kyle") {
-    commandTranscript += "{message: '" + msg.content + "', id: 2}, ";
     msg.reply("goodnight, best friend. sleep tight :-)");
   }
 });

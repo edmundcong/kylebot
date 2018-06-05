@@ -7,10 +7,6 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines": {
-    "node": "10.2.1",
-    "npm": "5.6.0"
-  },
   "author": "edmund cong",
   "license": "ISC",
   "dependencies": {
