@@ -54,6 +54,9 @@ client.on("message", async msg => {
     timer = await client.setInterval(() => {
       msg.channel.send(randomMusing(concatMusings));
     }, Math.floor(Math.random() * prodInterval));
+  } else if (msg.content === "goodnight kyle") {
+    commandTranscript += "{message: '" + msg.content + "', id: 2}, ";
+    msg.reply("goodnight, best friend. sleep tight :-)");
   }
 });
 
