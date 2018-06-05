@@ -24,6 +24,9 @@ client.on("message", async msg => {
   if (msg.content === "errorLogs") {
     msg.reply(errorLogs);
   }
+  if (msg.content === "commandTranscript") {
+    msg.reply(commandTranscript);
+  }
   if (msg.content === "stop" && started) {
     commandTranscript += "{message: " + msg.content + ", id: 1}, ";
     started = false;
