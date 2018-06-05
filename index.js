@@ -25,14 +25,16 @@ client.on("message", msg => {
     try {
       client.clearInterval(timer);
     } catch (e) {}
-  } else if (msg.author.username !== "kylebot") {
+  } else if (msg.author.username !== "kylebot" && msg.content !== "kyle") {
     msg.reply(randomMusing(concatMusings));
-  }
-  if (msg.content === "kyle" && !started) {
+  } else if (msg.content === "kyle" && !started && msg.author.username !== "kylebot") {
     started = true;
+    try {
+      client.clearInterval(timer);
+    } catch (e) {}
     timer = client.setInterval(() => {
       msg.channel.send(randomMusing(concatMusings));
-    }, Math.floor(Math.random() * prodInterval));
+    }, Math.floor(Math.random() * testingInterval));
   }
 });
 
