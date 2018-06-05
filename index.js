@@ -1,7 +1,5 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const channel = new Discord.Channel();
-const textChannel = new Discord.TextChannel(channel);
 const config = require("./config");
 const musings = require("./musings");
 
