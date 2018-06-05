@@ -38,10 +38,12 @@ client.on("message", async msg => {
       msg.reply("contact Ed I broke (err: 1)");
       errorLogs += " -- " + e;
     }
-  } else if (msg.content !== "kyle" && msg.content !== "stop" && msg.author.username !== "kylebot") {
-    commandTranscript += "{message: '" + msg.content + "', id: 2}, ";
-    msg.reply(randomMusing(concatMusings));
-  } else if (msg.content === "kyle" && !started) {
+  }
+  //   else if (msg.content !== "kyle" && msg.content !== "stop" && msg.author.username !== "kylebot") {
+  //     commandTranscript += "{message: '" + msg.content + "', id: 2}, ";
+  // msg.reply(randomMusing(concatMusings));
+  //   }
+  else if (msg.content === "kyle" && !started) {
     commandTranscript += "{message: '" + msg.content + "', id: 3}, ";
     started = true;
     try {
