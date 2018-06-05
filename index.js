@@ -35,19 +35,19 @@ client.on("message", async msg => {
     try {
       client.clearInterval(timer);
     } catch (e) {
-      msg.reply("contact edmund i broke (err: 1)");
+      msg.reply("contact Ed I broke (err: 1)");
       errorLogs += " -- " + e;
     }
   } else if (msg.content !== "kyle" && msg.content !== "stop" && msg.author.username !== "kylebot") {
-    commandTranscript += "{message: " + msg.content + ", id: 2}, ";
+    commandTranscript += "{message: '" + msg.content + "', id: 2}, ";
     msg.reply(randomMusing(concatMusings));
   } else if (msg.content === "kyle" && !started) {
-    commandTranscript += "{message: " + msg.content + ", id: 3}, ";
+    commandTranscript += "{message: '" + msg.content + "', id: 3}, ";
     started = true;
     try {
       client.clearInterval(timer);
     } catch (e) {
-      msg.reply("contact edmund i broke (err: 2)");
+      msg.reply("contact Ed I broke (err: 2)");
       errorLogs += " -- " + e;
     }
     timer = await client.setInterval(() => {
