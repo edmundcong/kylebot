@@ -34,9 +34,9 @@ let started = false;
 let timer;
 let errorLogs = "";
 client.on("message", async msg => {
-  if (msg.content === "errorLogs") {
-    msg.reply(errorLogs);
-  }
+  //   if (msg.content === "errorLogs") {
+  //     msg.reply(errorLogs);
+  //   }
   if (msg.content === "stop" && started) {
     started = false;
     msg.reply(randomMusing(stopMusings));
@@ -47,9 +47,11 @@ client.on("message", async msg => {
       msg.reply("contact Ed I broke (err: 1)");
       errorLogs += " -- " + e;
     }
-  } else if (msg.content === "say something, kyle") {
-    msg.reply(randomMusing(concatMusings));
-  } else if (msg.content === "kyle" && !started) {
+  }
+  //   else if (msg.content === "say something, kyle") {
+  //     msg.reply(randomMusing(concatMusings));
+  //   } else
+  if (msg.content === "kyle" && !started) {
     started = true;
     try {
       client.clearInterval(timer);
@@ -61,9 +63,10 @@ client.on("message", async msg => {
     timer = await client.setInterval(() => {
       msg.channel.send(randomMusing(concatMusings));
     }, prodInterval);
-  } else if (msg.content === "goodnight kyle") {
-    msg.reply("goodnight, best friend. sleep tight :-)");
   }
+  //   else if (msg.content === "goodnight kyle") {
+  //     msg.reply("goodnight, best friend. sleep tight :-)");
+  //   }
 });
 
 client.login(process.env.TOKEN);
