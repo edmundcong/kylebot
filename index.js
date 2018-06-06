@@ -1,8 +1,10 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const musings = require("./musings");
+const express = require("express");
+const app = express();
 
-const prodInterval = 1000 * 60 * 60;
+const prodInterval = 1000 * 60 * 10;
 const testingInterval = 5000;
 
 const randomMusing = items => {
@@ -12,6 +14,18 @@ const randomMusing = items => {
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
+
+app.set("port", process.env.PORT || 5000);
+
+//For avoidong Heroku $PORT error
+app
+  .get("/", function(request, response) {
+    const result = "App is running";
+    response.send(result);
+  })
+  .listen(app.get("port"), function() {
+    console.log("App is running, server is listening on port ", app.get("port"));
+  });
 
 const { stopMusings } = musings;
 const { generalMusings } = musings;
@@ -46,7 +60,7 @@ client.on("message", async msg => {
     msg.reply("i am online.");
     timer = await client.setInterval(() => {
       msg.channel.send(randomMusing(concatMusings));
-    }, Math.floor(Math.random() * prodInterval));
+    }, prodInterval);
   } else if (msg.content === "goodnight kyle") {
     msg.reply("goodnight, best friend. sleep tight :-)");
   }
