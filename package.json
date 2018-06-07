@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.3.2",
-    "express": "^4.16.3"
+    "easytimer": "^1.1.1",
+    "express": "^4.16.3",
+    "request": "^2.87.0"
   }
 }
