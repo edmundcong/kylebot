@@ -61,7 +61,7 @@ client.on("message", async msg => {
         let respString = "WEATHER OVER THE NEXT 24H:\n";
         weatherResponse
           .filter((e, i) => {
-            if (i < 8) return i;
+            if (i < 10) return i;
           })
           .map(e => {
             respString +=
