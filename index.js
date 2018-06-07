@@ -77,13 +77,15 @@ client.on("message", async msg => {
   }
   if (msg.content === "kyle" && !started) {
     started = true;
-    msg.reply(
-      "\nCOMMANDS: \nstop:\tKyle will stop sending messages.\nkyle:\tKyle will start sending messages.\nweather:\tKyle will tell you tomorrow's forecast for Sydney."
-    );
+    msg.reply("We're roomates.. but we're friends too!\nKyleBot is online -- type 'help' for help");
     timer = await client.setInterval(() => {
       msg.channel.send(randomMusing(concatMusings));
     }, prodInterval);
   }
+  if (msg.content === "help")
+    msg.reply(
+      "\nCOMMANDS: \nstop:\tKyle will stop sending messages.\nkyle:\tKyle will start sending messages.\nweather:\tKyle will tell you tomorrow's forecast for Sydney."
+    );
 });
 
 client.login(config.token);
