@@ -32,41 +32,26 @@ const { generalMusings } = musings;
 const concatMusings = [...stopMusings, ...generalMusings];
 let started = false;
 let timer;
-let errorLogs = "";
 client.on("message", async msg => {
-  //   if (msg.content === "errorLogs") {
-  //     msg.reply(errorLogs);
-  //   }
   if (msg.content === "stop" && started) {
     started = false;
     msg.reply(randomMusing(stopMusings));
-    timer = null;
     try {
       client.clearInterval(timer);
     } catch (e) {
       msg.reply("contact Ed I broke (err: 1)");
-      errorLogs += " -- " + e;
     }
+    timer = null;
   }
-  //   else if (msg.content === "say something, kyle") {
-  //     msg.reply(randomMusing(concatMusings));
-  //   } else
   if (msg.content === "kyle" && !started) {
     started = true;
-    try {
-      client.clearInterval(timer);
-    } catch (e) {
-      msg.reply("contact Ed I broke (err: 2)");
-      errorLogs += " -- " + e;
-    }
-    msg.reply("i am online.");
+    msg.reply(
+      "COMMANDS: \nstop: Kyle will stop sending messages.\nkyle: Kyle will start sending messages.\nweather: Kyle will tell you tomorrow's forecast for Sydney."
+    );
     timer = await client.setInterval(() => {
       msg.channel.send(randomMusing(concatMusings));
     }, prodInterval);
   }
-  //   else if (msg.content === "goodnight kyle") {
-  //     msg.reply("goodnight, best friend. sleep tight :-)");
-  //   }
 });
 
 client.login(process.env.TOKEN);
